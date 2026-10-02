@@ -1,0 +1,52 @@
+# نصب ChatGPT Desktop RTL Runtime
+
+[بازگشت به README فارسی](README.fa.md)
+
+## نصب با Setup.exe — روش پیشنهادی
+
+فایل زیر را از بخش Releases دریافت کنید:
+
+```text
+ChatGPT-Desktop-RTL-Runtime-Setup-v0.1.0-beta.exe
+```
+
+Installer به‌صورت **per-user** نصب می‌شود و Administrator/UAC لازم ندارد. مسیر پیش‌فرض:
+
+```text
+%LOCALAPPDATA%\Programs\ChatGPT Desktop RTL Runtime
+```
+
+پس از نصب، در Start Menu این میانبرها ایجاد می‌شوند:
+
+- **ChatGPT RTL** — اجرای ChatGPT با RTL و Vazirmatn
+- **Disable ChatGPT RTL** — حذف RTL از Session فعلی
+- **ChatGPT RTL Status** — نمایش وضعیت runtime
+- Uninstall
+
+Installer نسخه pinشده Vazirmatn را همراه خود دارد؛ بنابراین برای فونت به دانلود first-run نیاز ندارد.
+
+## نصب Portable از ZIP
+
+ZIP را در یک پوشه دلخواه Extract کنید؛ برای مثال:
+
+```text
+C:\Tools\chatgpt-desktop-rtl-runtime
+```
+
+سپس:
+
+```text
+ChatGPT-RTL-Run.cmd
+```
+
+در روش Portable، Vazirmatn در اولین اجرا دانلود و در `assets\Vazirmatn.woff2` ذخیره می‌شود.
+
+## Uninstall
+
+در نسخه Installer از **Settings → Apps → Installed apps** یا Shortcut مربوط به Uninstall استفاده کنید.
+
+Uninstall فقط فایل‌های این ابزار را حذف می‌کند و خود ChatGPT Desktop را تغییر نمی‌دهد. اگر ChatGPT در همان لحظه با RTL باز است، با بستن کامل ChatGPT تغییرات runtime نیز از بین می‌روند.
+
+## نکته امنیتی
+
+این ابزار `app.asar`، MSIX، Certificate یا `WindowsApps` را تغییر نمی‌دهد. با این حال هنگام اجرای ChatGPT RTL، CDP روی `127.0.0.1:9230` فعال است. جزئیات در [SECURITY.fa.md](SECURITY.fa.md).

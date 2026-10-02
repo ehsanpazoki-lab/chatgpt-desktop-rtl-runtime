@@ -1,0 +1,73 @@
+name: Static checks
+
+on:
+  push:
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  windows-static-checks:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v5
+
+      - name: Parse PowerShell files
+        shell: powershell
+        run: |
+          $failed = $false
+          Get-ChildItem -Recurse -Filter *.ps1 | ForEach-Object {
+            $tokens = $null
+            $errors = $null
+            [void][System.Management.Automation.Language.Parser]::ParseFile(
+              $_.FullName, [ref]$tokens, [ref]$errors
+            )
+            if ($errors.Count -gt 0) {
+              Write-Host "Parser errors in $($_.FullName)" -ForegroundColor Red
+              $errors | Format-List | Out-Host
+              $failed = $true
+            }
+          }
+          if ($failed) { exit 1 }
+
+      - name: Reject UTF-8 BOM in CMD files
+        shell: powershell
+        run: |
+          $bad = @()
+          Get-ChildItem -Recurse -Filter *.cmd | ForEach-Object {
+            $b = [System.IO.File]::ReadAllBytes($_.FullName)
+            if ($b.Length -ge 3 -and $b[0] -eq 0xEF -and $b[1] -eq 0xBB -and $b[2] -eq 0xBF) {
+              $bad += $_.FullName
+            }
+          }
+          if ($bad.Count) {
+            Write-Host "CMD files with UTF-8 BOM:" -ForegroundColor Red
+            $bad | ForEach-Object { Write-Host $_ }
+            exit 1
+          }
+
+      - name: Reject private/local development paths
+        shell: powershell
+        run: |
+          # Construct these strings so this workflow does not match itself.
+          $patterns = @(
+            ('C:' + '\Work' + 'spaces'),
+            ('Pooyesh' + 'Tech'),
+            ('Eh' + 'san')
+          )
+          $hits = @()
+          Get-ChildItem -Recurse -File |
+            Where-Object { $_.Extension -in '.ps1','.cmd','.md','.yml','.yaml','.json','.js' } |
+            ForEach-Object {
+              foreach ($p in $patterns) {
+                if (Select-String -LiteralPath $_.FullName -Pattern ([regex]::Escape($p)) -Quiet) {
+                  $hits += "$($_.FullName): $p"
+                }
+              }
+            }
+          if ($hits.Count) {
+            Write-Host "Private/local paths found:" -ForegroundColor Red
+            $hits | ForEach-Object { Write-Host $_ }
+            exit 1
+          }

@@ -1,0 +1,6 @@
+assets/*.woff2
+*.log
+*.zip
+_archive-*/
+installer/staging/
+installer/output/
