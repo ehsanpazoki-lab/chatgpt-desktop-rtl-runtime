@@ -7,7 +7,7 @@
 فایل زیر را از بخش Releases دریافت کنید:
 
 ```text
-ChatGPT-Desktop-RTL-Runtime-Setup-v0.1.0-beta.exe
+ChatGPT-Desktop-RTL-Runtime-Setup-v0.1.1-beta.exe
 ```
 
 Installer به‌صورت **per-user** نصب می‌شود و Administrator/UAC لازم ندارد. مسیر پیش‌فرض:
@@ -50,3 +50,8 @@ Uninstall فقط فایل‌های این ابزار را حذف می‌کند �
 ## نکته امنیتی
 
 این ابزار `app.asar`، MSIX، Certificate یا `WindowsApps` را تغییر نمی‌دهد. با این حال هنگام اجرای ChatGPT RTL، CDP روی `127.0.0.1:9230` فعال است. جزئیات در [SECURITY.fa.md](SECURITY.fa.md).
+
+
+## Shortcut دسکتاپ
+
+- در مرحله نصب می‌توانید با تیک گزینه **Create a desktop shortcut** یک Shortcut برای `ChatGPT RTL` روی Desktop ایجاد کنید؛ این گزینه پیش‌فرض خاموش است.

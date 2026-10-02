@@ -25,7 +25,7 @@ Get-NetTCPConnection -LocalPort 9230 -ErrorAction SilentlyContinue
 ابتدا Status را بگیرید:
 
 ```powershell
-powershell -NoProfile -ExecutionPolicy Bypass -File .\Status-ChatGPT-RTL.ps1
+Status-ChatGPT-RTL.cmd
 ```
 
 موارد مهم:

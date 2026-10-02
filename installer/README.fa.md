@@ -24,3 +24,8 @@ installer\output
 Workflow `build-installer.yml` روی Windows runner فایل Setup.exe را می‌سازد، SHA-256 تولید می‌کند و Artifact را ذخیره می‌کند. هنگام push کردن Tag مثل `v0.1.0-beta` همان فایل‌ها می‌توانند به GitHub Release متصل شوند.
 
 **نکته:** Setup.exe فعلاً Code Signing تجاری ندارد؛ بنابراین Windows SmartScreen ممکن است برای یک Publisher جدید هشدار reputation نشان دهد. این موضوع با UAC/Admin متفاوت است.
+
+
+## Shortcut دسکتاپ
+
+- در مرحله نصب می‌توانید با تیک گزینه **Create a desktop shortcut** یک Shortcut برای `ChatGPT RTL` روی Desktop ایجاد کنید؛ این گزینه پیش‌فرض خاموش است.

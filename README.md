@@ -25,7 +25,7 @@ Tested initially on Windows 11 with `OpenAI.Codex 26.924.6891.0`.
 For most users, the recommended distribution is the per-user Windows installer:
 
 ```text
-ChatGPT-Desktop-RTL-Runtime-Setup-v0.1.0-beta.exe
+ChatGPT-Desktop-RTL-Runtime-Setup-v0.1.1-beta.exe
 ```
 
 It requires no Administrator privileges and bundles the pinned Vazirmatn font.
@@ -69,7 +69,7 @@ Or simply close ChatGPT completely.
 ## Status
 
 ```powershell
-powershell -NoProfile -ExecutionPolicy Bypass -File .\Status-ChatGPT-RTL.ps1
+Status-ChatGPT-RTL.cmd
 ```
 
 ## How it works
@@ -103,3 +103,8 @@ MIT. See [LICENSE](LICENSE).
 
 Vazirmatn is licensed separately under OFL-1.1. See
 [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md).
+
+
+## Desktop shortcut
+
+- The installer offers an optional **Create a desktop shortcut** task for `ChatGPT RTL`; it is unchecked by default.

@@ -27,7 +27,8 @@ $fontBase64 = [Convert]::ToBase64String(
 
 function Get-Targets {
     try {
-        @(Invoke-RestMethod -Uri "http://127.0.0.1:$Port/json/list" -TimeoutSec 3)
+        $rawTargets = Invoke-RestMethod -Uri "http://127.0.0.1:$Port/json/list" -TimeoutSec 3
+        @($rawTargets | ForEach-Object { $_ })
     } catch {
         @()
     }
@@ -44,8 +45,17 @@ function Invoke-TargetExpression {
     $cts = New-Object System.Threading.CancellationTokenSource
 
     try {
+        $wsUrl = @($Target.webSocketDebuggerUrl) |
+            Where-Object { $_ } |
+            Select-Object -First 1
+
+        if (-not $wsUrl) {
+            throw "CDP target has no webSocketDebuggerUrl."
+        }
+
+        $wsUri = New-Object System.Uri ([string]$wsUrl)
         $null = $ws.ConnectAsync(
-            [Uri]$Target.webSocketDebuggerUrl,
+            $wsUri,
             $cts.Token
         ).GetAwaiter().GetResult()
 

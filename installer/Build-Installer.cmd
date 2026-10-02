@@ -14,7 +14,7 @@ if not exist "%ISCC%" (
   exit /b 2
 )
 
-"%ISCC%" "%~dp0ChatGPT-RTL.iss"
+"%ISCC%" /DMyAppVersion=0.1.1-beta "%~dp0ChatGPT-RTL.iss"
 set "RC=%ERRORLEVEL%"
 if not "%RC%"=="0" pause
 exit /b %RC%

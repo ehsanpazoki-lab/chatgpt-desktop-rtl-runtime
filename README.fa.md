@@ -23,7 +23,7 @@
 برای کاربران عادی، فایل Setup ویندوز روش پیشنهادی است:
 
 ```text
-ChatGPT-Desktop-RTL-Runtime-Setup-v0.1.0-beta.exe
+ChatGPT-Desktop-RTL-Runtime-Setup-v0.1.1-beta.exe
 ```
 
 Installer در سطح کاربر نصب می‌شود، UAC لازم ندارد و Shortcutهای لازم را در Start Menu ایجاد می‌کند.
@@ -57,7 +57,7 @@ Disable-ChatGPT-RTL.cmd
 ## بررسی وضعیت
 
 ```powershell
-powershell -NoProfile -ExecutionPolicy Bypass -File .\Status-ChatGPT-RTL.ps1
+Status-ChatGPT-RTL.cmd
 ```
 
 خروجی وضعیت CDP، نسخه RTL، تعداد عناصر تغییرکرده، وضعیت Vazirmatn و پیدا شدن conversation root را نشان می‌دهد.
@@ -85,3 +85,8 @@ Launcher برنامه بسته‌بندی‌شده ChatGPT را با `IApplicati
 کد پروژه: MIT — [LICENSE](LICENSE)
 
 Vazirmatn: OFL-1.1 — [THIRD_PARTY_NOTICES.fa.md](THIRD_PARTY_NOTICES.fa.md)
+
+
+## Shortcut دسکتاپ
+
+- در مرحله نصب می‌توانید با تیک گزینه **Create a desktop shortcut** یک Shortcut برای `ChatGPT RTL` روی Desktop ایجاد کنید؛ این گزینه پیش‌فرض خاموش است.

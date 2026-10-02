@@ -3,7 +3,11 @@
 $ErrorActionPreference = 'Stop'
 
 try {
-    $targets = @(Invoke-RestMethod -Uri "http://127.0.0.1:$Port/json/list" -TimeoutSec 4)
+    # Windows PowerShell 5.1 can preserve a JSON array returned by
+    # Invoke-RestMethod as one nested Object[] pipeline item. Re-emit the
+    # response through the pipeline so CDP targets are always flattened.
+    $rawTargets = Invoke-RestMethod -Uri "http://127.0.0.1:$Port/json/list" -TimeoutSec 4
+    $targets = @($rawTargets | ForEach-Object { $_ })
 } catch {
     Write-Host "CDP active      : False"
     Write-Host "RTL active      : False"
@@ -26,7 +30,16 @@ $ws = New-Object System.Net.WebSockets.ClientWebSocket
 $cts = New-Object System.Threading.CancellationTokenSource
 
 try {
-    $null = $ws.ConnectAsync([Uri]$target.webSocketDebuggerUrl, $cts.Token).GetAwaiter().GetResult()
+    $wsUrl = @($target.webSocketDebuggerUrl) |
+        Where-Object { $_ } |
+        Select-Object -First 1
+
+    if (-not $wsUrl) {
+        throw "CDP target has no webSocketDebuggerUrl."
+    }
+
+    $wsUri = New-Object System.Uri ([string]$wsUrl)
+    $null = $ws.ConnectAsync($wsUri, $cts.Token).GetAwaiter().GetResult()
 
     $expr = @"
 (() => JSON.stringify({
