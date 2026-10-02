@@ -2,6 +2,9 @@
 #ifndef MyAppVersion
 #define MyAppVersion "0.2.1-beta"
 #endif
+#ifndef MyAppFileVersion
+#define MyAppFileVersion "0.2.1.0"
+#endif
 #define MyAppPublisher "Ehsan Pazoki (ehsanpazoki-lab)"
 #define MyAppPublisherURL "https://github.com/ehsanpazoki-lab"
 #define MyAppURL "https://github.com/ehsanpazoki-lab/chatgpt-desktop-rtl-runtime"
@@ -15,7 +18,9 @@ AppName={#MyAppName}
 AppVersion={#MyAppVersion}
 AppVerName={#MyAppName} {#MyAppVersion}
 AppPublisher={#MyAppPublisher}
-AppPublisherURL={#MyAppPublisherURL}\nAppSupportURL={#MyAppSupportURL}\nAppUpdatesURL={#MyAppUpdatesURL}
+AppPublisherURL={#MyAppPublisherURL}
+AppSupportURL={#MyAppSupportURL}
+AppUpdatesURL={#MyAppUpdatesURL}
 DefaultDirName={localappdata}\Programs\ChatGPT Desktop RTL Runtime
 DefaultGroupName=ChatGPT Desktop RTL Runtime
 DisableProgramGroupPage=yes
@@ -34,7 +39,10 @@ SetupLogging=yes
 VersionInfoCompany=Ehsan Pazoki / ehsanpazoki-lab
 VersionInfoDescription={#MyAppName} - community RTL runtime
 VersionInfoProductName={#MyAppName}
-VersionInfoProductVersion={#MyAppVersion}
+VersionInfoVersion={#MyAppFileVersion}
+VersionInfoTextVersion={#MyAppVersion}
+VersionInfoProductVersion={#MyAppFileVersion}
+VersionInfoProductTextVersion={#MyAppVersion}
 
 [Tasks]
 Name: "desktopicon"; Description: "{cm:CreateDesktopIcon}"; GroupDescription: "{cm:AdditionalIcons}"; Flags: unchecked

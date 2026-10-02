@@ -39,7 +39,19 @@ jobs:
             $version = '0.2.1-beta'
           }
 
-          & "${env:ProgramFiles(x86)}\\Inno Setup 6\\ISCC.exe" "/DMyAppVersion=$version" ".\\installer\\ChatGPT-RTL.iss"
+          if ($version -match '^(\\d+)\\.(\\d+)\\.(\\d+)') {
+            $fileVersion = "$($Matches[1]).$($Matches[2]).$($Matches[3]).0"
+          } else {
+            throw "Cannot derive a numeric Windows file version from '$version'."
+          }
+
+          Write-Host "Semantic version : $version"
+          Write-Host "File version     : $fileVersion"
+
+          & "${env:ProgramFiles(x86)}\\Inno Setup 6\\ISCC.exe" `
+            "/DMyAppVersion=$version" `
+            "/DMyAppFileVersion=$fileVersion" `
+            ".\\installer\\ChatGPT-RTL.iss"
           if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
 
       - name: Create SHA-256
