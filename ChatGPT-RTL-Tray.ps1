@@ -12,11 +12,45 @@ $Root = $PSScriptRoot
 $RunScript = Join-Path $Root 'ChatGPT-RTL-Run.ps1'
 $DisableScript = Join-Path $Root 'Disable-ChatGPT-RTL.ps1'
 $PidFile = Join-Path $Root 'chatgpt-rtl-tray.pid'
+$ActiveIconPath = Join-Path $Root 'assets\icons\ChatGPT-RTL.ico'
+$InactiveIconPath = Join-Path $Root 'assets\icons\ChatGPT-RTL-Inactive.ico'
+
+function Import-TrayIcon {
+    param(
+        [Parameter(Mandatory=$true)]
+        [string]$Path
+    )
+
+    if (-not (Test-Path -LiteralPath $Path)) {
+        return [System.Drawing.SystemIcons]::Application
+    }
+
+    $stream = [System.IO.File]::Open(
+        $Path,
+        [System.IO.FileMode]::Open,
+        [System.IO.FileAccess]::Read,
+        [System.IO.FileShare]::ReadWrite
+    )
+
+    try {
+        $sourceIcon = New-Object System.Drawing.Icon($stream)
+        try {
+            return [System.Drawing.Icon]$sourceIcon.Clone()
+        }
+        finally {
+            $sourceIcon.Dispose()
+        }
+    }
+    finally {
+        $stream.Dispose()
+    }
+}
+
 
 $createdNew = $false
 $mutex = New-Object System.Threading.Mutex(
     $true,
-    'Local\ChatGPTDesktopRTLRuntimeTray_v020',
+    'Local\ChatGPTDesktopRTLRuntimeTray_v021',
     [ref]$createdNew
 )
 
@@ -221,7 +255,7 @@ function Start-HiddenPowerShell {
 }
 
 $notify = New-Object System.Windows.Forms.NotifyIcon
-$notify.Icon = [System.Drawing.SystemIcons]::Application
+$notify.Icon = Import-TrayIcon -Path $InactiveIconPath
 $notify.Text = 'ChatGPT RTL: checking...'
 $notify.Visible = $true
 
@@ -254,19 +288,26 @@ $exitItem.Text = 'Exit Tray Controller'
 $notify.ContextMenuStrip = $menu
 
 $script:LastActive = $null
+$script:RefreshInProgress = $false
 
 function Refresh-TrayStatus {
+    if ($script:RefreshInProgress) {
+        return
+    }
+
+    $script:RefreshInProgress = $true
+
     try {
         $s = Get-RtlStatus
 
         if ($s.Active) {
-            $notify.Icon = [System.Drawing.SystemIcons]::Information
+            $notify.Icon = Import-TrayIcon -Path $ActiveIconPath
             $notify.Text = 'ChatGPT RTL: Active'
             $enableItem.Enabled = $false
             $disableItem.Enabled = $true
         }
         else {
-            $notify.Icon = [System.Drawing.SystemIcons]::Application
+            $notify.Icon = Import-TrayIcon -Path $InactiveIconPath
             $notify.Text = 'ChatGPT RTL: Inactive'
             $enableItem.Enabled = $true
             $disableItem.Enabled = $s.Debugger
@@ -291,6 +332,9 @@ function Refresh-TrayStatus {
         $notify.Text = 'ChatGPT RTL: status error'
         $enableItem.Enabled = $true
         $disableItem.Enabled = $true
+    }
+    finally {
+        $script:RefreshInProgress = $false
     }
 }
 
@@ -369,7 +413,7 @@ $($s.Detail)
 })
 
 $timer = New-Object System.Windows.Forms.Timer
-$timer.Interval = 3000
+$timer.Interval = 8000
 $timer.Add_Tick({ Refresh-TrayStatus })
 $timer.Start()
 

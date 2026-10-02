@@ -65,7 +65,8 @@ Tray Controller، مستندات و Uninstall را داخل همان فولدر 
 
 ```text
 ☐ Create a desktop shortcut
-☐ Start RTL tray controller with Windows
+☑ Show RTL controller in the system tray after installation
+  ☐ Start RTL tray controller with Windows
 ```
 
 هر دو پیش‌فرض خاموش هستند. در پایان Setup نیز می‌توانید Tray Controller را همان
@@ -73,3 +74,13 @@ Tray Controller، مستندات و Uninstall را داخل همان فولدر 
 
 Tray Controller از منوی کنار ساعت امکان Enable/Disable/Status را می‌دهد و هنگام
 Uninstall به‌صورت خودکار متوقف می‌شود.
+
+## GitHub پروژه
+
+Publisher/maintainer این Installer:
+
+`Ehsan Pazoki (ehsanpazoki-lab)`
+
+سورس، Releaseها و Issueها از مخزن رسمی همین پروژه در GitHub در دسترس هستند:
+
+`https://github.com/ehsanpazoki-lab/chatgpt-desktop-rtl-runtime`

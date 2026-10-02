@@ -53,8 +53,8 @@ jobs:
           # Construct these strings so this workflow does not match itself.
           $patterns = @(
             ('C:' + '\Work' + 'spaces'),
-            ('Pooyesh' + 'Tech'),
-            ('Eh' + 'san')
+            ('C:' + '\Users' + '\'),
+            ('Pooyesh' + 'Tech')
           )
           $hits = @()
           Get-ChildItem -Recurse -File |
@@ -70,4 +70,24 @@ jobs:
             Write-Host "Private/local paths found:" -ForegroundColor Red
             $hits | ForEach-Object { Write-Host $_ }
             exit 1
+          }
+
+      - name: Validate project icon assets
+        shell: powershell
+        run: |
+          Add-Type -AssemblyName System.Drawing
+          $icons = Get-ChildItem -Recurse -Path .\assets\icons -Filter *.ico
+          if (-not $icons -or $icons.Count -lt 2) {
+            Write-Host "Expected active and inactive ICO files." -ForegroundColor Red
+            exit 1
+          }
+          foreach ($iconFile in $icons) {
+            try {
+              $icon = New-Object System.Drawing.Icon($iconFile.FullName)
+              $icon.Dispose()
+            }
+            catch {
+              Write-Host "Invalid ICO: $($iconFile.FullName)" -ForegroundColor Red
+              exit 1
+            }
           }

@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.2.1-beta
+
+- Add original community icon assets for Setup, shortcuts, and tray.
+- Add explicit installer choice for showing the tray controller after install.
+- Add GitHub maintainer/repository metadata to installer and documentation.
+- Reduce background tray polling frequency.
+
+
 ## 0.2.0-beta
 
 - Add a lightweight Windows system-tray controller with Enable/Disable/Status.

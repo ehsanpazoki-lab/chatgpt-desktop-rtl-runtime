@@ -109,3 +109,15 @@ Exit Tray Controller
 Installer همچنین فولدر مشخص **ChatGPT Desktop RTL Runtime** را در Start Menu
 می‌سازد و Run، Disable، Status، Tray Controller، مستندات و Uninstall همگی داخل
 همان فولدر قرار می‌گیرند.
+
+## نگهدارنده و سورس پروژه
+
+نگهداری این پروژه توسط **Ehsan Pazoki** با حساب GitHub زیر انجام می‌شود:
+
+`ehsanpazoki-lab`
+
+مخزن اصلی:
+`https://github.com/ehsanpazoki-lab/chatgpt-desktop-rtl-runtime`
+
+این یک پروژه مستقل Community است و وابستگی رسمی یا تأیید رسمی از طرف سازنده
+ChatGPT ندارد.

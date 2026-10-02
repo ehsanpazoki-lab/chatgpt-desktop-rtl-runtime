@@ -36,7 +36,7 @@ jobs:
           if ($tag -match '^v(.+)$') {
             $version = $Matches[1]
           } else {
-            $version = '0.2.0-beta'
+            $version = '0.2.1-beta'
           }
 
           & "${env:ProgramFiles(x86)}\\Inno Setup 6\\ISCC.exe" "/DMyAppVersion=$version" ".\\installer\\ChatGPT-RTL.iss"

@@ -125,3 +125,13 @@ start the tray controller with Windows. Auto-start is unchecked by default.
 
 The installer also creates an explicit **ChatGPT Desktop RTL Runtime** Start Menu
 folder containing Run, Disable, Status, Tray Controller, documentation, and Uninstall.
+
+## Maintainer and source
+
+Maintained by **Ehsan Pazoki** on GitHub: `ehsanpazoki-lab`.
+
+Project repository:
+`https://github.com/ehsanpazoki-lab/chatgpt-desktop-rtl-runtime`
+
+This is an independent community project and is not affiliated with or endorsed by
+the vendor of ChatGPT.
