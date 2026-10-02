@@ -48,3 +48,12 @@ Disable-ChatGPT-RTL.cmd
 ```
 
 یا ChatGPT را کامل Quit کنید و سپس به روش معمولی باز کنید.
+
+## آیکن Tray دیده نمی‌شود
+
+از Start Menu وارد فولدر `ChatGPT Desktop RTL Runtime` شوید و
+`RTL Tray Controller` را اجرا کنید.
+
+اگر گزینه اجرای Tray همراه Windows را هنگام نصب انتخاب کرده‌اید ولی آیکن
+دیده نمی‌شود، ابتدا از همان Shortcut آن را یک‌بار دستی اجرا کنید. Tray Controller
+single-instance است و اجرای دوباره آن آیکن اضافی ایجاد نمی‌کند.

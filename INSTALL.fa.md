@@ -55,3 +55,21 @@ Uninstall فقط فایل‌های این ابزار را حذف می‌کند �
 ## Shortcut دسکتاپ
 
 - در مرحله نصب می‌توانید با تیک گزینه **Create a desktop shortcut** یک Shortcut برای `ChatGPT RTL` روی Desktop ایجاد کنید؛ این گزینه پیش‌فرض خاموش است.
+
+## Start Menu و System Tray در v0.2.0-beta
+
+Installer یک فولدر مشخص در Start Menu ایجاد می‌کند و Run، Disable، Status،
+Tray Controller، مستندات و Uninstall را داخل همان فولدر قرار می‌دهد.
+
+در صفحه Additional Tasks دو گزینه اختیاری دارید:
+
+```text
+☐ Create a desktop shortcut
+☐ Start RTL tray controller with Windows
+```
+
+هر دو پیش‌فرض خاموش هستند. در پایان Setup نیز می‌توانید Tray Controller را همان
+لحظه اجرا کنید.
+
+Tray Controller از منوی کنار ساعت امکان Enable/Disable/Status را می‌دهد و هنگام
+Uninstall به‌صورت خودکار متوقف می‌شود.

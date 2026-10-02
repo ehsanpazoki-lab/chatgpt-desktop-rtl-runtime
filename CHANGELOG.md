@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.2.0-beta
+
+- Add a lightweight Windows system-tray controller with Enable/Disable/Status.
+- Create explicit Start Menu folder shortcuts for Run, Disable, Status, Tray, docs, and Uninstall.
+- Add optional tray auto-start with Windows.
+- Stop the tray controller automatically during uninstall.
+
+
 ## 0.1.1-beta
 
 - Add an optional Desktop shortcut task to the Windows installer (unchecked by default).

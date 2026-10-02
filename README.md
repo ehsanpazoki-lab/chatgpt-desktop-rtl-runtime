@@ -108,3 +108,20 @@ Vazirmatn is licensed separately under OFL-1.1. See
 ## Desktop shortcut
 
 - The installer offers an optional **Create a desktop shortcut** task for `ChatGPT RTL`; it is unchecked by default.
+
+## System tray controller
+
+`v0.2.0-beta` adds a lightweight tray controller:
+
+```text
+Enable RTL
+Disable RTL
+Status
+Exit Tray Controller
+```
+
+Double-clicking the tray icon runs the Enable action. The installer can optionally
+start the tray controller with Windows. Auto-start is unchecked by default.
+
+The installer also creates an explicit **ChatGPT Desktop RTL Runtime** Start Menu
+folder containing Run, Disable, Status, Tray Controller, documentation, and Uninstall.

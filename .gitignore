@@ -4,3 +4,4 @@ assets/*.woff2
 _archive-*/
 installer/staging/
 installer/output/
+chatgpt-rtl-tray.pid

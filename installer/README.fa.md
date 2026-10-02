@@ -29,3 +29,9 @@ Workflow `build-installer.yml` روی Windows runner فایل Setup.exe را م�
 ## Shortcut دسکتاپ
 
 - در مرحله نصب می‌توانید با تیک گزینه **Create a desktop shortcut** یک Shortcut برای `ChatGPT RTL` روی Desktop ایجاد کنید؛ این گزینه پیش‌فرض خاموش است.
+
+## UX نسخه v0.2.0-beta
+
+Installer علاوه بر Desktop shortcut اختیاری، گزینه اختیاری اجرای Tray Controller
+همراه Windows را دارد. Shortcutهای اصلی داخل یک فولدر صریح در Start Menu ساخته
+می‌شوند و Tray Controller هنگام Uninstall قبل از حذف فایل‌ها متوقف می‌شود.

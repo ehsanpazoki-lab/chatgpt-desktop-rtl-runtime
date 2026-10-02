@@ -90,3 +90,22 @@ Vazirmatn: OFL-1.1 — [THIRD_PARTY_NOTICES.fa.md](THIRD_PARTY_NOTICES.fa.md)
 ## Shortcut دسکتاپ
 
 - در مرحله نصب می‌توانید با تیک گزینه **Create a desktop shortcut** یک Shortcut برای `ChatGPT RTL` روی Desktop ایجاد کنید؛ این گزینه پیش‌فرض خاموش است.
+
+## کنترل از System Tray
+
+در `v0.2.0-beta` یک Tray Controller سبک اضافه شده است:
+
+```text
+Enable RTL
+Disable RTL
+Status
+Exit Tray Controller
+```
+
+دابل‌کلیک روی آیکن Tray همان Enable را اجرا می‌کند. در Installer می‌توانید
+به‌صورت اختیاری اجرای Tray Controller همراه Windows را فعال کنید؛ این گزینه
+پیش‌فرض خاموش است.
+
+Installer همچنین فولدر مشخص **ChatGPT Desktop RTL Runtime** را در Start Menu
+می‌سازد و Run، Disable، Status، Tray Controller، مستندات و Uninstall همگی داخل
+همان فولدر قرار می‌گیرند.
