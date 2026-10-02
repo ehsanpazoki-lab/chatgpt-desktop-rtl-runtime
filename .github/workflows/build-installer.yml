@@ -39,7 +39,7 @@ jobs:
             $version = '0.2.1-beta'
           }
 
-          if ($version -match '^(\\d+)\\.(\\d+)\\.(\\d+)') {
+          if ($version -match '^(\d+)\.(\d+)\.(\d+)') {
             $fileVersion = "$($Matches[1]).$($Matches[2]).$($Matches[3]).0"
           } else {
             throw "Cannot derive a numeric Windows file version from '$version'."
